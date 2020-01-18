@@ -1,15 +1,17 @@
 /***********************************
 MOBILE/MAIN STYLES
 ***********************************/
-*, ::after, ::before{
-    box-sizing: border-box;
+*,
+::after,
+::before {
+  box-sizing: border-box;
 }
 html,
 body {
   height: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #ffffff;
-  background-color: #3E9AF7;
+  background-color: #3e9af7;
 }
 
 .background-image {
@@ -51,27 +53,31 @@ body {
 }
 
 .info {
+  margin-top: 2rem;;
   order: 2;
 }
 
 /***********************************
 TABLET STYLES
 ***********************************/
-@media(min-width: 768px){
+@media (min-width: 768px) {
+  #root {
+    padding-right: 2rem;
+    padding-bottom: 3rem;
+  }
 
-    .info {
-      order: 3;
-      margin-top: auto;
-      align-self: flex-end;
-    }
-  
-    .cta {
-      order: 2;
-      margin-top: 2.5rem;
-      align-self: flex-start;
-      margin-bottom: 0;
-    }
+  .info {
+    order: 3;
+    margin-top: auto;
+    align-self: flex-end;
+  }
 
+  .cta {
+    order: 2;
+    margin-top: 2rem;
+    align-self: flex-start;
+    margin-bottom: 0;
+  }
 }
 /***********************************
 DESKTOP STYLES

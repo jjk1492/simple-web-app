@@ -1,7 +1,9 @@
 /***********************************
 MOBILE/MAIN STYLES
 ***********************************/
-*, ::after, ::before {
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -10,7 +12,7 @@ body {
   height: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #ffffff;
-  background-color: #3E9AF7;
+  background-color: #3e9af7;
 }
 
 .background-image {
@@ -52,6 +54,7 @@ body {
 }
 
 .info {
+  margin-top: 2rem;
   order: 2;
 }
 
@@ -59,6 +62,11 @@ body {
 TABLET STYLES
 ***********************************/
 @media (min-width: 768px) {
+  #root {
+    padding-right: 2rem;
+    padding-bottom: 3rem;
+  }
+
   .info {
     order: 3;
     margin-top: auto;
@@ -67,7 +75,7 @@ TABLET STYLES
 
   .cta {
     order: 2;
-    margin-top: 2.5rem;
+    margin-top: 2rem;
     align-self: flex-start;
     margin-bottom: 0;
   }
@@ -181,6 +189,7 @@ DESKTOP STYLES
 @media (min-width: 768px) {
   .btn-xl {
     font-size: 2.25rem;
+    padding: 0.75rem 1.5rem;
   }
 }
 @media (min-width: 972px) {
