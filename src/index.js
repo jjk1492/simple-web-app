@@ -1,60 +1,86 @@
 'use strict';
 
-class TitleMarkup extends React.Component {
+class RegisterForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { visible: true };
+        this.state = { valuue: '' };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({ value: event.target.value });
+    }
+
+    handleSubmit(event) {
+        alert('Form Submitted');
+        event.preventDefault();
     }
 
     render() {
-        if (this.state.visible) {
-            return (
-                <div>
-                    <span className='h1 thin-text'>8<sup>th</sup> Annual</span>
-                    <h1 className="bold-text">Web Developer Conference</h1>
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <div className="form-row">
+                    <textarea className="col-12 col-md-6" value={this.state.value} onChange={this.handleChange} id="firstName" placeholder="First Name"/>
+                    <textarea className="col-12 col-md-6" value={this.state.value} onChange={this.handleChange} id="lastName" placeholder="Last Name"/>
                 </div>
-            );
-        }
+                <input type="submit" value="Continue" />
+            </form>
+        );
+    }
+}
 
 
+class TitleMarkup extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <span className='h1 thin-text'>8<sup>th</sup> Annual</span>
+                <h1 className="bold-text">Web Developer Conference</h1>
+            </div>
+        );
     }
 }
 
 class InfoMarkup extends React.Component {
+    s
     constructor(props) {
         super(props);
-        this.state = { visible: true };
     }
 
     render() {
-        if (this.state.visible) {
-            return (
-                <div className='info'>
-                    <p className='thin-text'>Conference Dates</p>
-                    <p className='bold-text'>
-                        April 18-22, 2020<br />
-                        11 am - 3 pm
+        return (
+            <div className='info'>
+                <p className='thin-text'>Conference Dates</p>
+                <p className='bold-text'>
+                    April 18-22, 2020<br />
+                    11 am - 3 pm
                     </p>
-                </div>
-            );
-        }
+            </div>
+        );
     }
 }
 
 class CTAMarkup extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {visible: true};
     }
 
-    render(){
-        if( this.state.visible ){
-            return(
-                <div className='cta'>
-                    <button className='btn btn-xl'>Get my tickets</button>
-                </div>
-            );
-        }
+    showRegister() {
+        ReactDOM.render(<RegisterForm />, document.getElementById('root'));
+    }
+
+    render() {
+        return (
+            <div className='cta'>
+                <button className='btn btn-xl' onClick={this.showRegister}>Get my tickets</button>
+            </div>
+        );
     }
 }
 
