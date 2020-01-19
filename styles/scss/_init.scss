@@ -39,7 +39,7 @@ body {
   height: 100%;
 }
 
-.content-container {
+#root, .content-container {
   height: 100%;
   display: flex;
   flex-direction: column;

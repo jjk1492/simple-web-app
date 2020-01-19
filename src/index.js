@@ -20,13 +20,23 @@ class RegisterForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="form-row">
-                    <textarea className="col-12 col-md-6" value={this.state.value} onChange={this.handleChange} id="firstName" placeholder="First Name"/>
-                    <textarea className="col-12 col-md-6" value={this.state.value} onChange={this.handleChange} id="lastName" placeholder="Last Name"/>
-                </div>
-                <input type="submit" value="Continue" />
-            </form>
+            <div className="content-container">
+                <h1 className="thin-text">Tell us about yourself</h1>
+
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-row">
+                        <div className="col-12 col-md-6">
+                            <textarea className="form-control" value={this.state.value} onChange={this.handleChange} id="firstName" placeholder="First Name" />
+                        </div>
+
+                        <div className="col-12 col-md-6">
+                            <textarea className="form-control" value={this.state.value} onChange={this.handleChange} id="lastName" placeholder="Last Name" />
+                        </div>
+
+                    </div>
+                    <input type="submit" className="btn" value="Continue" />
+                </form>
+            </div>
         );
     }
 }

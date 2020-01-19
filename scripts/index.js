@@ -38,15 +38,32 @@ var RegisterForm = function (_React$Component) {
         key: 'render',
         value: function render() {
             return React.createElement(
-                'form',
-                { onSubmit: this.handleSubmit },
+                'div',
+                { className: 'content-container' },
                 React.createElement(
-                    'div',
-                    { className: 'form-row' },
-                    React.createElement('textarea', { className: 'col-12 col-md-6', value: this.state.value, onChange: this.handleChange, id: 'firstName', placeholder: 'First Name' }),
-                    React.createElement('textarea', { className: 'col-12 col-md-6', value: this.state.value, onChange: this.handleChange, id: 'lastName', placeholder: 'Last Name' })
+                    'h1',
+                    { className: 'thin-text' },
+                    'Tell us about yourself'
                 ),
-                React.createElement('input', { type: 'submit', value: 'Continue' })
+                React.createElement(
+                    'form',
+                    { onSubmit: this.handleSubmit },
+                    React.createElement(
+                        'div',
+                        { className: 'form-row' },
+                        React.createElement(
+                            'div',
+                            { className: 'col-12 col-md-6' },
+                            React.createElement('textarea', { className: 'form-control', value: this.state.value, onChange: this.handleChange, id: 'firstName', placeholder: 'First Name' })
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'col-12 col-md-6' },
+                            React.createElement('textarea', { className: 'form-control', value: this.state.value, onChange: this.handleChange, id: 'lastName', placeholder: 'Last Name' })
+                        )
+                    ),
+                    React.createElement('input', { type: 'submit', className: 'btn', value: 'Continue' })
+                )
             );
         }
     }]);
