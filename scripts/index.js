@@ -8,27 +8,105 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var RegisterForm = function (_React$Component) {
-    _inherits(RegisterForm, _React$Component);
+var SelectField = function (_React$Component) {
+    _inherits(SelectField, _React$Component);
 
-    function RegisterForm(props) {
-        _classCallCheck(this, RegisterForm);
+    function SelectField(props) {
+        _classCallCheck(this, SelectField);
 
-        var _this = _possibleConstructorReturn(this, (RegisterForm.__proto__ || Object.getPrototypeOf(RegisterForm)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (SelectField.__proto__ || Object.getPrototypeOf(SelectField)).call(this, props));
 
-        _this.state = { valuue: '' };
+        _this.state = { value: props.options[0] };
 
         _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
 
-    _createClass(RegisterForm, [{
+    _createClass(SelectField, [{
+        key: 'handleChange',
+        value: function handleChange() {
+            this.setState({ value: event.target.value });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var optionElements = [];
+            var i = 0;
+            this.props.options.forEach(function (element) {
+                optionElements.push(React.createElement(
+                    'option',
+                    { key: i++, value: element },
+                    element
+                ));
+            });
+            return React.createElement(
+                'div',
+                { className: 'form-group ' + this.props.additionalClasses },
+                React.createElement(
+                    'select',
+                    { id: this.props.id, className: 'form-control', value: this.state.value, onChange: this.handleChange },
+                    optionElements
+                )
+            );
+        }
+    }]);
+
+    return SelectField;
+}(React.Component);
+
+var TextField = function (_React$Component2) {
+    _inherits(TextField, _React$Component2);
+
+    function TextField(props) {
+        _classCallCheck(this, TextField);
+
+        var _this2 = _possibleConstructorReturn(this, (TextField.__proto__ || Object.getPrototypeOf(TextField)).call(this, props));
+
+        _this2.state = { value: '' };
+
+        _this2.handleChange = _this2.handleChange.bind(_this2);
+        return _this2;
+    }
+
+    _createClass(TextField, [{
         key: 'handleChange',
         value: function handleChange(event) {
             this.setState({ value: event.target.value });
         }
     }, {
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                { className: 'form-group ' + this.props.additionalClasses },
+                React.createElement('input', {
+                    type: this.props.type,
+                    className: 'form-control',
+                    value: this.state.value,
+                    onChange: this.handleChange,
+                    id: this.props.id,
+                    placeholder: this.props.placeholder
+                })
+            );
+        }
+    }]);
+
+    return TextField;
+}(React.Component);
+
+var RegisterForm = function (_React$Component3) {
+    _inherits(RegisterForm, _React$Component3);
+
+    function RegisterForm(props) {
+        _classCallCheck(this, RegisterForm);
+
+        var _this3 = _possibleConstructorReturn(this, (RegisterForm.__proto__ || Object.getPrototypeOf(RegisterForm)).call(this, props));
+
+        _this3.handleSubmit = _this3.handleSubmit.bind(_this3);
+        return _this3;
+    }
+
+    _createClass(RegisterForm, [{
         key: 'handleSubmit',
         value: function handleSubmit(event) {
             alert('Form Submitted');
@@ -41,28 +119,47 @@ var RegisterForm = function (_React$Component) {
                 'div',
                 { className: 'content-container' },
                 React.createElement(
-                    'h1',
-                    { className: 'thin-text' },
-                    'Tell us about yourself'
-                ),
-                React.createElement(
                     'form',
                     { onSubmit: this.handleSubmit },
                     React.createElement(
+                        'h1',
+                        { className: 'thin-text' },
+                        'Tell us about yourself'
+                    ),
+                    React.createElement(
                         'div',
                         { className: 'form-row' },
-                        React.createElement(
-                            'div',
-                            { className: 'col-12 col-md-6' },
-                            React.createElement('textarea', { className: 'form-control', value: this.state.value, onChange: this.handleChange, id: 'firstName', placeholder: 'First Name' })
-                        ),
-                        React.createElement(
-                            'div',
-                            { className: 'col-12 col-md-6' },
-                            React.createElement('textarea', { className: 'form-control', value: this.state.value, onChange: this.handleChange, id: 'lastName', placeholder: 'Last Name' })
-                        )
+                        React.createElement(TextField, { id: 'firstName', placeholder: 'First Name', type: 'text', additionalClasses: 'col-12 col-md-6' }),
+                        React.createElement(TextField, { id: 'lastName', placeholder: 'Last Name', type: 'text', additionalClasses: 'col-12 col-md-6' })
                     ),
-                    React.createElement('input', { type: 'submit', className: 'btn', value: 'Continue' })
+                    React.createElement(TextField, { id: 'email', placeholder: 'Email Address', type: 'email' }),
+                    React.createElement(TextField, { id: 'address1', placeholder: 'Street Address 1', type: 'text' }),
+                    React.createElement(TextField, { id: 'address2', placeholder: 'Street Address 2', type: 'text' }),
+                    React.createElement(
+                        'div',
+                        { className: 'form-row' },
+                        React.createElement(TextField, { id: 'city', placeholder: 'City', type: 'text', additionalClasses: 'col-12 col-md-6' }),
+                        React.createElement(SelectField, {
+                            id: 'state',
+                            additionalClasses: 'col-6 col-md-3',
+                            options: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
+                        }),
+                        React.createElement(TextField, { id: 'zip', placeholder: 'Zip Code', type: 'text', additionalClasses: 'col-6 col-md-3' })
+                    ),
+                    React.createElement(TextField, { id: 'schoolCompany', placeholder: 'School/Company', type: 'text' }),
+                    React.createElement(SelectField, {
+                        id: 'status',
+                        options: ['Undergraduate Student', 'Graduate Student', 'Professor', 'Industry Employee']
+                    }),
+                    React.createElement(SelectField, {
+                        id: 'paymentType',
+                        options: ['Visa', 'Mastercard', 'American Express', 'Discover']
+                    }),
+                    React.createElement(
+                        'button',
+                        { type: 'submit', className: 'btn' },
+                        'Continue'
+                    )
                 )
             );
         }
@@ -71,8 +168,8 @@ var RegisterForm = function (_React$Component) {
     return RegisterForm;
 }(React.Component);
 
-var TitleMarkup = function (_React$Component2) {
-    _inherits(TitleMarkup, _React$Component2);
+var TitleMarkup = function (_React$Component4) {
+    _inherits(TitleMarkup, _React$Component4);
 
     function TitleMarkup(props) {
         _classCallCheck(this, TitleMarkup);
@@ -109,8 +206,8 @@ var TitleMarkup = function (_React$Component2) {
     return TitleMarkup;
 }(React.Component);
 
-var InfoMarkup = function (_React$Component3) {
-    _inherits(InfoMarkup, _React$Component3);
+var InfoMarkup = function (_React$Component5) {
+    _inherits(InfoMarkup, _React$Component5);
 
     function InfoMarkup(props) {
         _classCallCheck(this, InfoMarkup);
@@ -143,8 +240,8 @@ var InfoMarkup = function (_React$Component3) {
     return InfoMarkup;
 }(React.Component);
 
-var CTAMarkup = function (_React$Component4) {
-    _inherits(CTAMarkup, _React$Component4);
+var CTAMarkup = function (_React$Component6) {
+    _inherits(CTAMarkup, _React$Component6);
 
     function CTAMarkup(props) {
         _classCallCheck(this, CTAMarkup);
@@ -175,16 +272,16 @@ var CTAMarkup = function (_React$Component4) {
     return CTAMarkup;
 }(React.Component);
 
-var IndexMarkup = function (_React$Component5) {
-    _inherits(IndexMarkup, _React$Component5);
+var IndexMarkup = function (_React$Component7) {
+    _inherits(IndexMarkup, _React$Component7);
 
     function IndexMarkup(props) {
         _classCallCheck(this, IndexMarkup);
 
-        var _this5 = _possibleConstructorReturn(this, (IndexMarkup.__proto__ || Object.getPrototypeOf(IndexMarkup)).call(this, props));
+        var _this7 = _possibleConstructorReturn(this, (IndexMarkup.__proto__ || Object.getPrototypeOf(IndexMarkup)).call(this, props));
 
-        _this5.state = { visible: true };
-        return _this5;
+        _this7.state = { visible: true };
+        return _this7;
     }
 
     _createClass(IndexMarkup, [{
