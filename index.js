@@ -8,10 +8,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var e = React.createElement;
-
-var TitleMarkup = function (_React$component) {
-    _inherits(TitleMarkup, _React$component);
+var TitleMarkup = function (_React$Component) {
+    _inherits(TitleMarkup, _React$Component);
 
     function TitleMarkup(props) {
         _classCallCheck(this, TitleMarkup);
@@ -26,13 +24,131 @@ var TitleMarkup = function (_React$component) {
         key: 'render',
         value: function render() {
             if (this.state.visible) {
-                return e('div', {}, e('span', { class: 'h1 thin-text' }, '8th Annual'), e('h1', { class: 'bold-text' }, 'Web Developer Conference'));
+                return React.createElement(
+                    'div',
+                    null,
+                    React.createElement(
+                        'span',
+                        { className: 'h1 thin-text' },
+                        '8',
+                        React.createElement(
+                            'sup',
+                            null,
+                            'th'
+                        ),
+                        ' Annual'
+                    ),
+                    React.createElement(
+                        'h1',
+                        { className: 'bold-text' },
+                        'Web Developer Conference'
+                    )
+                );
             }
         }
     }]);
 
     return TitleMarkup;
-}(React.component);
+}(React.Component);
 
-var rootContainer = document.querySelector('#root');
-ReactDOM.render(e(TitleMarkup), rootContainer);
+var InfoMarkup = function (_React$Component2) {
+    _inherits(InfoMarkup, _React$Component2);
+
+    function InfoMarkup(props) {
+        _classCallCheck(this, InfoMarkup);
+
+        var _this2 = _possibleConstructorReturn(this, (InfoMarkup.__proto__ || Object.getPrototypeOf(InfoMarkup)).call(this, props));
+
+        _this2.state = { visible: true };
+        return _this2;
+    }
+
+    _createClass(InfoMarkup, [{
+        key: 'render',
+        value: function render() {
+            if (this.state.visible) {
+                return React.createElement(
+                    'div',
+                    { className: 'info' },
+                    React.createElement(
+                        'p',
+                        { className: 'thin-text' },
+                        'Conference Dates'
+                    ),
+                    React.createElement(
+                        'p',
+                        { className: 'bold-text' },
+                        'April 18-22, 2020',
+                        React.createElement('br', null),
+                        '11 am - 3 pm'
+                    )
+                );
+            }
+        }
+    }]);
+
+    return InfoMarkup;
+}(React.Component);
+
+var CTAMarkup = function (_React$Component3) {
+    _inherits(CTAMarkup, _React$Component3);
+
+    function CTAMarkup(props) {
+        _classCallCheck(this, CTAMarkup);
+
+        var _this3 = _possibleConstructorReturn(this, (CTAMarkup.__proto__ || Object.getPrototypeOf(CTAMarkup)).call(this, props));
+
+        _this3.state = { visible: true };
+        return _this3;
+    }
+
+    _createClass(CTAMarkup, [{
+        key: 'render',
+        value: function render() {
+            if (this.state.visible) {
+                return React.createElement(
+                    'div',
+                    { className: 'cta' },
+                    React.createElement(
+                        'button',
+                        { className: 'btn btn-xl' },
+                        'Get my tickets'
+                    )
+                );
+            }
+        }
+    }]);
+
+    return CTAMarkup;
+}(React.Component);
+
+var IndexMarkup = function (_React$Component4) {
+    _inherits(IndexMarkup, _React$Component4);
+
+    function IndexMarkup(props) {
+        _classCallCheck(this, IndexMarkup);
+
+        var _this4 = _possibleConstructorReturn(this, (IndexMarkup.__proto__ || Object.getPrototypeOf(IndexMarkup)).call(this, props));
+
+        _this4.state = { visible: true };
+        return _this4;
+    }
+
+    _createClass(IndexMarkup, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                { className: 'content-container' },
+                React.createElement(TitleMarkup, null),
+                React.createElement(InfoMarkup, null),
+                React.createElement(CTAMarkup, null)
+            );
+        }
+    }]);
+
+    return IndexMarkup;
+}(React.Component);
+
+var domContainer = document.querySelector('#root');
+ReactDOM.render(React.createElement(IndexMarkup, null), domContainer);
