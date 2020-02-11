@@ -11,7 +11,11 @@ body {
   height: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #ffffff;
-  background-color: #3e9af7;
+  // background-color: #3e9af7;
+}
+
+#root {
+  overflow: scroll;
 }
 
 .background-image {
@@ -19,23 +23,25 @@ body {
   bottom: 0;
   right: 0;
   width: 100%;
+  height: 100%;
   z-index: -100;
 }
 
 #background {
-  background-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(0, 0, 0, 0.45);
   z-index: -50;
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
+  transition: background-color 0.4s linear 0.3s;
   &.form-active {
     background-color: rgba(0, 0, 0, 0.75);
   }
 }
 
-#root{
+#root {
   height: 100%;
 }
 
@@ -48,7 +54,7 @@ body {
   justify-content: flex-start;
 }
 
-form{
+form {
   margin-right: auto;
 }
 
@@ -66,7 +72,6 @@ form{
   margin-top: 2rem;
   order: 2;
 }
-
 
 /***********************************
 TABLET STYLES
@@ -96,7 +101,7 @@ DESKTOP STYLES
 ***********************************/
 @media (min-width: 972px) {
   #root {
-    padding-top: 1.5rem;
+    padding-top: 2.5rem;
     padding-right: 5%;
     padding-left: 5%;
   }
